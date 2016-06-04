@@ -1,0 +1,311 @@
+<?php
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Le Drive par Chopin</title>
+    <meta name="description" content="Projet BDD2" />
+    <meta name="keywords" content="Xavier CHOPIN" />
+    <meta name="robots" content="INDEX,FOLLOW" />
+    <link rel="icon" href="./assets/skin/frontend/unicart/default/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="./assets/skin/frontend/unicart/default/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" type="text/css" href="{{navigation.assets}}js/calendar/calendar-win2k-1.css" />
+    <link rel="stylesheet" type="text/css" href="{{navigation.assets}}skin/frontend/unicart/default/css/style.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="{{navigation.assets}}skin/frontend/unicart/default/css/responsive.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="{{navigation.assets}}skin/frontend/unicart/default/css/slick.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="{{navigation.assets}}skin/frontend/unicart/default/css/slick-theme.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="{{navigation.assets}}skin/frontend/unicart/default/css/jquery-mCustomScrollbar.css" media="all" />
+    <script type="text/javascript" src="{{navigation.js}}evne/jquery.js"></script>
+    <link rel="stylesheet" href={{""~ navigation.js ~"font-awesome/css/font-awesome.min.css"}}>
+
+</head>
+<body class="cms-index-index cms-home">
+<noscript>
+    <div class="global-site-notice noscript">
+        <div class="notice-inner">
+            <p>
+                <strong>JavaScript semble être désactivé de votre navigateur internet.</strong><br />
+                Vous êtes obligé d'activer JavaScript pour pouvoir profiter de notre site web :(                </p>
+        </div>
+    </div>
+</noscript>
+
+</div><!--end fixed header-->
+
+<div class="header">
+    <div class="container">
+        <a href="../../assets/wishlist/index.html" class="navbar-brand">
+            <span class="large-logo">Le Drive</span>
+            <span>par Chopin</span>
+        </a>
+        <a href="#" class="show-navs"></a>
+        <div class="clr"></div>
+        <div class="nav-list">
+            <div class="nav nav-header" id="nav-header">
+                <ul class="links">
+                    <li><span class="psy-nav">&nbsp;</span></li>
+                    <li><a href="">A propos de nous</a></li>
+                    <li><a href="">Service client</a></li>
+                    <li><a href="">Politique de confidentialité</a></li>
+                    {% if session.prenom is not empty %}
+                        <li> <a href="{{ navigation.root }}me">Mon compte</a></li>
+                        <li class="inLogin"><a href="{{ navigation.root }}logout">Se déconnecter</a></li>
+                    {% else %}
+                        <li> <a href="{{ navigation.root }}login">Connexion / Authentification</a></li>
+                    {% endif %}
+                </ul>            </div>
+
+            <div class="phone-number" id="phone-number">
+                <span class="ico-phone"></span>
+                <span> 03 83 83 83 83</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--sub header-->
+<div class="container">
+    <div class="sub-header" id="sub-header">
+        <div class="logo" id="logo">
+            <a href="{{ navigation.root }}">
+                <span><small>Le Drive</small></span>
+                <span class="sub">par CHOPIN</span>
+            </a>
+        </div>
+
+
+        <div class="search" id="search">
+            <form action="{{ navigation.root }}search" method="POST">
+                <span class="ico-search"></span>
+                <input type="text" name="reference" value="" maxlength="128" placeholder="Rechercher un ID de produit"/>
+                <button type="submit">OK</button>
+            </form>
+        </div>
+
+
+        <div class="cart">
+            <a href="{{ navigation.root }}panier" class="cart-link">
+                <div class="ico-nav-cart"></div>
+                <div class="count-product">
+                    <span>Panier</span>
+                    <span class="color-count">{{ nbArticle }} </span>
+                    {% if (nbArticle < 2) %}<span>article</span> {% else %}<span>articles</span> {% endif %}
+                </div>
+                <div class="total-price">
+                    <span>{{ totalPanier }} </span>
+                     <span class="dollar">€ </span>
+                </div>
+            </a>
+        </div>
+
+
+    </div>
+</div>
+
+<!--FIN HEADER -->
+
+
+<!--categories-->
+<div class="container topMenu">
+
+    <div class="categories">
+        <div class="categories-nav">
+            <a href="#" class="all-categories">
+                <span>Voir les catégories</span>
+                <span class="caret"></span>
+            </a>
+            <ul class="main-nav-categories">
+
+                {% set imgCategorie = 0 %}
+                {% for c in menu_categories %}
+                    {% set imgCategorie = imgCategorie + 1 %}
+
+                    <li>
+
+
+                        <a  class=" first-dropdown hover-link active-link first-dropdown">
+                            <span>{{ c.nom_categorie }}</span>
+                            <span class="caret"></span>
+                        </a>
+
+                        <div class="drop-menu">
+                            <!--absolute image-->
+                            <div class="image-categories">
+                                <img src="{{ navigation.images }}categorie/{{ imgCategorie }}.jpg"/>
+                            </div>
+
+
+                            {% for r in menu_rayons %}
+
+                                {% if c.nom_categorie == r.nom_categorie %}
+
+
+                                    <div class="shops-categories">
+                                        <div class="head-shop-categories">
+                                            <span>{{ r.nom_rayon }}</span>
+                                        </div>
+                                        <ul>
+                                            {% for sous_rayon in menu_sous_rayons %}
+                                                {% if r.nom_rayon == sous_rayon.nom_rayon  %}
+                                                    <li>
+                                                        <a href="{{ navigation.root }}rayon/{{ sous_rayon.nom_sr }}">
+                                                            {{ sous_rayon.nom_sr }}                                     </a>
+                                                    </li>
+                                                {% endif %}
+
+                                            {% endfor %}
+                                        </ul>
+
+
+                                    </div>
+
+                                {% endif %}
+
+                            {% endfor %}
+
+
+
+                        </div>
+                    </li>
+                {% endfor %}
+
+            </ul>
+        </div>
+    </div>
+
+
+
+
+
+
+{% block content %}
+
+{% endblock %}
+</div>
+<a href="#" class="scrollup">Remonter</a>
+<!--footer-->
+<div class="container">
+
+    <div class="footer">
+
+        <div class="half">
+            <h3>
+                <span class="head-name">Information</span>
+            </h3>
+            <ul>
+                <li><a >A propos</a></li>
+                <li><a> Informations pour la presse</a></li>
+                <li><a>Politique de confidentialité</a></li>
+            </ul>	<div class="border-footer"></div>
+        </div><div class="half">
+            <h3>
+                <span class="head-name">Mon</span>
+                <span class="red-head-nav head-name">COMPTE</span>
+            </h3>
+            <ul class="nav navbar-nav footer-nav">
+
+                <li>
+                    <a href="{{ navigation.root }}panier">Voir mon panier</a>
+                </li>
+
+                <li>
+                    <a >Suivre ma commande</a>
+                </li>
+
+                <li>
+                    <a>Contacter le service client</a>
+                </li>
+            </ul>
+            <div class="border-footer"></div>
+        </div><div class="half">
+            <h3>
+                <span class="head-name">Nous</span>
+                <span class="blue-head-nav head-name">contacter</span>
+            </h3>
+            <ul class="nav navbar-nav footer-nav">
+                <li>
+                    <span>Boulevard des Aiguillettes</span>
+                </li>
+                <li>
+                    <span>54500 Vandoeuvre-lès-Nancy</span>
+                </li>
+
+                <li>
+                    <span>bonjour@xavierchop.in</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="about-developer">
+    <div class="container">
+        <div class="left">
+            <span>03 83 83 83 83</span>
+        </div>
+        <div class="right">
+            <img src="{{ navigation.images }}aci.png" alt="ACI">
+        </div>
+        <div class="center">
+            <div class="copy">
+                <span>Copyright 2016</span>
+                <a href='{{ navigation.root }}'>Le Drive par CHOPIN</a>
+                <span>Crée par</span>
+                <a href="{{ navigation.root }}">X.C</a>	    	</div>
+        </div>
+    </div>
+</div>
+</div>
+
+</body>
+
+
+<script type="text/javascript" src="{{ navigation.js }}evne/jquerync.js"></script>
+<script type="text/javascript" src="{{ navigation.js }}prototype/prototype.js"></script>
+<script type="text/javascript" src="{{ navigation.js }}lib/ccard.js"></script>
+<script type="text/javascript" src="{{ navigation.js }}prototype/validation.js"></script>
+<script type="text/javascript" src="{{ navigation.js }}scriptaculous/builder.js"></script>
+<script type="text/javascript" src="{{ navigation.js }}scriptaculous/effects.js"></script>
+<script type="text/javascript" src="{{ navigation.js }}scriptaculous/dragdrop.js"></script>
+<script type="text/javascript" src="{{ navigation.js }}scriptaculous/controls.js"></script>
+<script type="text/javascript" src="{{ navigation.js }}scriptaculous/slider.js"></script>
+<script type="text/javascript" src="{{ navigation.js }}varien/js.js"></script>
+<script type="text/javascript" src="{{ navigation.js }}varien/form.js"></script>
+<script type="text/javascript" src="{{ navigation.js }}varien/menu.js"></script>
+<script type="text/javascript" src="{{ navigation.js }}mage/translate.js"></script>
+<script type="text/javascript" src="{{ navigation.js }}mage/cookies.js"></script>
+<script type="text/javascript" src="{{ navigation.js }}evne/slick.min.js"></script>
+<script type="text/javascript" src="{{ navigation.js }}evne/modal.js"></script>
+<script type="text/javascript" src="{{ navigation.js }}evne/front.js"></script>
+<script type="text/javascript" src="{{ navigation.js }}evne/header.js"></script>
+<script type="text/javascript" src="{{ navigation.js }}evne/categories.js"></script>
+<script type="text/javascript" src="{{ navigation.js }}evne/sub-nav-drop.js"></script>
+<script type="text/javascript" src="{{ navigation.js }}evne/animate-input.js"></script>
+<script type="text/javascript" src="{{ navigation.js }}evne/slider-index.js"></script>
+<script type="text/javascript" src="{{ navigation.js }}evne/slider-product.js"></script>
+<script type="text/javascript" src="{{ navigation.js }}evne/image-function.js"></script>
+<script type="text/javascript" src="{{ navigation.js }}evne/scroll-up.js"></script>
+<script type="text/javascript" src="{{ navigation.js }}evne/fixed-header.js"></script>
+<script type="text/javascript" src="{{ navigation.js }}evne/fixed-header-buttons.js"></script>
+<script type="text/javascript" src="{{ navigation.js }}evne/mainpage-tabs.js"></script>
+<script type="text/javascript" src="{{ navigation.js }}evne/input-create.js"></script>
+<script type="text/javascript" src="{{ navigation.js }}evne/proof.js"></script>
+<script type="text/javascript" src="{{ navigation.js }}evne/filter.js"></script>
+<script type="text/javascript" src="{{ navigation.js }}evne/mobile-category.js"></script>
+<script type="text/javascript" src="{{ navigation.js }}evne/classie.js"></script>
+<script type="text/javascript" src="{{ navigation.js }}evne/selectFx.js"></script>
+<script type="text/javascript" src="{{ navigation.js }}evne/jquery.mCustomScrollbar.concat.min.js"></script>
+<script type="text/javascript" src="{{ navigation.js }}varien/product.js"></script>
+<script type="text/javascript" src="{{ navigation.js }}varien/configurable.js"></script>
+<script type="text/javascript" src="{{ navigation.js }}calendar/calendar.js"></script>
+<script type="text/javascript" src="{{ navigation.js }}calendar/calendar-setup.js"></script>
+
+</html>
+
+
+
+
+

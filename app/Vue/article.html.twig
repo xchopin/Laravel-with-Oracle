@@ -1,0 +1,169 @@
+{% extends 'squelette.html.twig' %}
+{% block content %}
+    <!--categories-->
+    <div class="container topMenu">
+    </div>
+    <div class="container full-page">
+
+
+        <script type="text/javascript">
+            var optionsPrice = new Product.OptionsPrice([]);
+        </script>
+        <div class="product-page">
+            <div class="container">
+
+                <div class="product-all">
+                    <div class="navigate-info">
+                        <div class="breadcrumb">
+                            <i class="home"><a href="{{ navigation.root }}"></a></i>
+
+
+
+                            <a  title="" class="bLink">{{ categorieProduit.nom_categorie }} </a>
+                            <a  title="" class="bLink">{{ rayonProduit.nom_rayon }} </a>
+                            <a  href="{{ navigation.root }}rayon/{{ sRayon.nom_sr }}"title="" class="bLink">{{ sRayon.nom_sr }} </a>
+                            {% if ssRayon == true %}
+                              <a  title="" class="bLink">{{ ssRayon.nom_ssr }} </a>
+                            {%  endif %}
+                            <a href="#" title="" class="bLink">{{ produit.marque }}</a>
+                            <a href="#" title="" class="bLink">{{ produit.libelle }}</a>
+                        </div>
+                    </div>
+                    <div class="short-info">
+                <span>Référence : {{ produit.reference }}</span>
+
+                    </div>
+                    <form action="{{ navigation.root }}add" method="post">
+
+                        <div class="no-display">
+                            <input type="hidden" name="reference" value="{{ produit.reference }}"/>
+                        </div>
+
+                        <div class="photo-product">
+                            <div class="slider-product">
+                                <div class="init-slider">
+                                    <div>
+                                        <img src="{{ navigation.images }}produit/{{ produit.fichier_image }}" alt=""/>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="product-about">
+                            <div class="product-name">
+                                <span>{{ produit.libelle }} (<i><small>{{ produit.marque }}</small> </i>)</span>
+
+                            </div>
+                            <div class="position-product"></div>
+                            <div class="sort-one">
+                                <form method="post" action="{{ navigation.root }}add">
+                                    <div class="sort-head">
+                                    <span class="product_view_status">
+                                            {% if produit_disponible == 1 %}
+                                                <span class="green"> En stock ! </span>
+                                            {% else %}
+                                                <span class="red"> Produit victime de son succès !</span>
+                                            {% endif %}
+                                    </span>
+                                    </div>
+                                    <div class="sort-body">
+                                        <br>
+                                        <!-- // sale price   -->
+                                        <div data-price="{{ produit.prix_unit_ht }}" class="pay-price">
+                                        <span class="main-price">{{ produit.prix_unit_ht }} </span>
+                                        <span class="dollar">€</span>
+
+                                        </div>
+                                        <div class="weeedro">
+                                            <div class="counts">
+                                                <a href="#" class="minus"></a>
+                                                <input type="text" name="quantite" id="qty" maxlength="12" value="1"
+                                                       title="Quantite" class="input-text qty"/>
+                                                <a href="#" class="plus"></a>
+                                            </div>
+                                            <br>
+                                        </div>
+
+                                            <button type="submit" title="Ajouter au panier"
+                                                    id="product-addtocart-button" class="button btn-cart">
+                                                <span class="ico-cart"></span>
+                                                <span>Ajouter</span>
+                                            </button>
+
+
+                                    </div>
+                                </form>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+
+                <div class="suggest">
+                    <div class="list-sub-items">
+
+
+                        <div class="tabs-characteristics">
+                            <div class="tabs">
+
+                                <input id="tab_1" type="radio" name="tab" checked="checked"/>
+                                <input id="tab_2" type="radio" name="tab"/>
+
+                                <label for="tab_1" id="tab_l1"> Détails </label>
+
+                                <div class="clr"></div>
+
+                                <div class="tabs_cont">
+                                    <div id="tab_c1">
+                                        <div class="tabs-in">
+
+                                            <!-- <div class="table-head-about">
+                                                <span>specification</span>
+                                                <div class="border"></div>
+                                            </div> -->
+
+                                            <div class="table-body-about">
+                                                <div class="row">
+                                                    <span class="name">Marque</span>
+                                                    <span class="parameter">{{ produit.marque }} </span>
+                                                </div>
+                                                <div class="row">
+                                                    <span class="name">Prix HT </span>
+                                                    <span class="parameter"> {{ produit.prix_unit_ht }} € / Unité</span>
+                                                </div>
+                                                <div class="row">
+                                                    <span class="name"> Liquide VF</span>
+                                                    <span class="parameter"> {{ produit.liquide_vf }}</span>
+                                                </div>
+                                                <div class="row">
+                                                    <span class="name">Prix au Kilo/Litre </span>
+                                                    <span class="parameter">{{ produit.prix_kilo_ou_litre }}</span>
+                                                </div>
+                                                <div class="row">
+                                                    <span class="name">Quantité disponible </span>
+                                                    <span class="parameter">{{ produit.quantite_stock }}</span>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+
+{% endblock %}

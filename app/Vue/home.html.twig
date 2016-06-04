@@ -1,0 +1,93 @@
+{% extends 'squelette.html.twig' %}
+{% block content %}
+
+
+
+    <!-- SLIDER D'IMAGES -->
+
+    <div class="container full-page">
+        <div class="std">
+            <div class="slick-bind homepage-big-slider">
+                <div>
+                    <div class="slide">
+                        <div class="content-slide"><span class="red-content">Ouverture</span> <span>&nbsp; :-)</span>
+                        </div>
+                        <img alt="" src="./assets/media/slider/1.jpg"/>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="slide"><img alt="" src="./assets/media/slider/smart.png"/></div>
+                </div>
+
+                <div>
+                    <div class="slide"><img alt="" src="./assets/media/slider/cam.png"/></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!--BEST SELLER-->
+    <div class="container">
+        <div class="tabs">
+            <input id="tab_1" type="radio" name="tab" checked="checked"/>
+            <input id="tab_5" type="radio" name="tab"/>
+            <label onclick="imgPosition();" for="tab_1" id="tab_l1">En promotion</label> &nbsp;
+            <div style="clear:both"></div>
+            <div class="tabs_cont">
+                <div id="tab_c1">
+                    <ul>
+
+                            {% for promotion in promotions %}
+                                  <li>
+                                        <div class="product-item">
+                                                <div class="overlay-image">
+                                                    <a href="{{ navigation.root }}article/{{ promotion.reference }}">
+                                                        <img src="{{ navigation.assets }}{{ promotion.fichier_image}}">
+                                                    </a>
+                                                </div>
+
+        				                    						<span class="about-product">
+        				                    							<span class="name">{{ promotion.libelle }}	</span>
+        				                    							<span class="type">{{ promotion.marque}}	</span>
+        				                    							<span class="price">{{ promotion.prix_unit_ht }}</span>
+        				                    							<span class="price-small">€</span>
+        				                    						</span>
+                                                <a href="{{ navigation.root }}article/{{ promotion.reference }}" class="button-bay">
+                                                    <span class="icon-bay"></span>
+                                                    <span>Voir le produit</span>
+                                                </a>
+                                        </div>
+                                 </li>
+                             {% endfor %}
+
+                    </ul>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- QUI SOMMES NOUS -->
+    <div class="container">
+        <div class="aboutMainpage">
+            <h1>Qui sommes-<span class="red">nous</span></h1>
+            <p>
+                Le Drive par Chopin est un Supermarché sur internet, basé à Nancy et crée en 2016.
+            </p>
+            <p>
+                Faites vos courses en ligne chez Le Drive et récupérez les à l'heure de votre choix. Nous chargeons
+                votre coffre en 5 minutes.
+            </p>
+        </div>
+    </div>
+
+
+
+
+
+{% endblock %}

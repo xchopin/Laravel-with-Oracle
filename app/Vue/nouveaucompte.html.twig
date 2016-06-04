@@ -1,0 +1,117 @@
+{% extends 'squelette.html.twig' %}
+{% block content %}
+
+
+    <div class="container full-page">
+        <!--Création de compte-->
+        <div class="create-account" id="create-account">
+            <div class="container">
+                <h3>S'inscrire</h3>
+                <div class="create-account-fild">
+                    <form action="{{ navigation.root }}create" method="post"
+                          id="form-validate">
+                        <input type="hidden" name="success_url" value=""/>
+                        <input type="hidden" name="error_url" value=""/>
+                        <div class="fild-name">
+                            <h4>
+                                <span>Informations personnelles   </span>
+                            </h4>
+                        </div>
+
+                        <div class="fild-input">
+
+                            <div class="one-input">
+                                <label for="firstname">
+
+                                    <div class="placeholder">
+                                        <span>Nom</span>
+                                    </div>
+
+                                    <input id="firstname" title="Nom" name="nom" type="text">
+
+                                </label>
+                            </div>
+
+                            <div class="one-input">
+                                <label for="lastname" class="required">
+
+                                    <div class="placeholder">
+                                        <span>Prénom</span>
+                                    </div>
+
+                                    <input title="prénom" id="lastname" name="prenom" type="text">
+
+                                </label>
+                            </div>
+
+                            <div class="one-input">
+                                <label for="email_address" class="required">
+                                    <div class="placeholder">
+                                          <span>Adresse email </span>
+                                    </div>
+                                    <input type="email" name="email" id="email_address" value="" title="Adresse email"/>
+                                </label>
+                            </div>
+
+                            <div class="one-input">
+                                <label for="telephone" class="required">
+                                    <div class="placeholder">
+                                        <span>Téléphone</span>
+                                    </div>
+                                    <input type="number" name="telephone" id="telephone" value="" title="Numéro de téléphone"/>
+
+                                </label>
+                            </div>
+
+                            <div class="one-input">
+                                <label for="adresse" class="required">
+                                    <div class="placeholder">
+                                        <span>Adresse</span>
+                                    </div>
+                                    <input type="text" name="adresse" id="adresse" value="" title="Adresse"/>
+
+                                </label>
+                            </div>
+
+
+
+                        </div>
+                                <br>
+                        <div class="fild-name">
+                            <h4><span>Information de connexion</span></h4>
+                        </div>
+
+                        <div class="fild-input">
+
+                            <div class="one-input">
+                                <label for="no_carte" class="required">
+                                    <div class="placeholder">
+                                        <span>Numéro de carte fidélité</span>
+                                    </div>
+                                    <input type="number" name="no_carte" id="no_carte" title="Numéro de carte">
+                                </label>
+                            </div>
+
+                            <div class="one-input"></div>
+
+                        </div>
+
+                    </form>
+                </div>
+
+                <div class="overlay-submit">
+                    <div class="submit-fild">
+                        <div class="button-fild">
+                            <button form="form-validate" type="submit">S'inscrire</button>
+                        </div>
+                        <div class="required-star"><span>* Champs requis</span></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+{% endblock %}

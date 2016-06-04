@@ -1,0 +1,72 @@
+{% extends 'squelette.html.twig' %}
+{% block content %}
+
+<!--create-account-->
+<div class="create-account" id="create-account">
+    <div class="container">
+        <h3>Bonjour {{client.prenom ~ " " ~ client.nom }}</h3>
+                <div class="create-account-fild">
+
+
+                <div class="fild-name">
+                    <h4><span><i class="fa fa-user"></i> Mes informations</span></h4>
+                </div>  
+
+
+               <p> <br>
+               <span><i class="fa fa-envelope-o"></i> Adresse email : {{ client.e_mail }}</span> <br>
+               <span><i class="fa fa-phone"></i> Téléphone : {{ client.telephone }}</span><br>
+               <span><i class="fa fa-home"></i> Adresse: {{ client.adresse }}</span><br><br>
+
+
+               </p>
+        </div>
+
+
+        <br>
+             <div class="create-account-fild">
+
+                <div class="fild-name">
+                    <h4><span><i class="fa fa-money"></i> SOLDE SUR VOTRE CARTE FIDELITÉ</span></h4>
+                </div>
+
+
+               <p>
+                   <br>  <center> <span><h3>{{ client.credit_carte}} <i class="fa fa-euro"></i></h3></span><br></center>
+               </p>
+             </div>
+
+
+    <br>
+
+
+     <div class="create-account-fild">
+
+
+                <div class="fild-name">
+                    <h4><span><i class="fa fa-shopping-basket"></i> Ma dernière commande</span></h4>
+                </div>
+
+
+               <p> <br>
+
+               <span> Montant : {{ commande.montant}} <i class="fa fa-euro"> </i></span> <br>
+               <span><i class="fa fa-calendar"></i> Date de commande : {{ commande.datevalidation}}</span><br>
+               <span><i class="fa fa-calendar-check-o"></i> Date de retrait : {{ commande.date_heure }}</span><br><br>
+               <span><form action="{{ navigation.root }}delete"  method="post">
+                <a  href="javascript:;" onclick="parentNode.submit();"><font color="red"><i class="fa fa-trash"></i> Envie de re commander / Commande retirée ? </font></span></a>
+                     </form><br>
+
+               <br>
+
+
+               </p>
+        </div>
+
+
+    </div>
+</div>    </div>
+    
+
+
+{% endblock %}

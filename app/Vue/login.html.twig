@@ -1,0 +1,80 @@
+{% extends 'squelette.html.twig' %}
+{% block content %}
+
+<hr>
+<div class="container full-page">
+    <!--login-->
+    <div class="login" id="login">
+        <div class="container">
+            <h3>Authentification</h3>
+            <div class="register-costumer">
+
+                <form action="{{ navigation.root }}connexion" method="post" id="login-form">
+                    <input name="form_key" type="hidden" value="IsERcAP1Op3fYLBp" />
+                    <h4>Je suis déjà un client !</h4>
+                    <p></p>
+                    <input type="number" name="no_carte" value="" id="no_carte" class="input-text required-entry validate-email" title="Numéro de carte fidélité"  placeholder="Numéro de carte fidélité">
+
+
+                    <div id="window-overlay" class="window-overlay" style="display:none;"></div>
+                    <div id="remember-me-popup" class="remember-me-popup" style="display:none;">
+                        <div class="remember-me-popup-head">
+                            <h3>What's this?</h3>
+                            <a href="#" class="remember-me-popup-close" title="Close">Close</a>
+                        </div>
+                        <div class="remember-me-popup-body">
+                            <p>Checking &quot;Remember Me&quot; will let you access your shopping cart on this computer when you are logged out</p>
+                            <div class="remember-me-popup-close-button a-right">
+                                <a href="#" class="remember-me-popup-close button" title="Close"><span>Close</span></a>
+                            </div>
+                        </div>
+                    </div>
+                    <script type="text/javascript">
+                        //<![CDATA[
+                        function toggleRememberMepopup(event){
+                            if($('remember-me-popup')){
+                                var viewportHeight = document.viewport.getHeight(),
+                                        docHeight      = $$('body')[0].getHeight(),
+                                        height         = docHeight > viewportHeight ? docHeight : viewportHeight;
+                                $('remember-me-popup').toggle();
+                                $('window-overlay').setStyle({ height: height + 'px' }).toggle();
+                            }
+                            Event.stop(event);
+                        }
+
+                        document.observe("dom:loaded", function() {
+                            new Insertion.Bottom($$('body')[0], $('window-overlay'));
+                            new Insertion.Bottom($$('body')[0], $('remember-me-popup'));
+
+                            $$('.remember-me-popup-close').each(function(element){
+                                Event.observe(element, 'click', toggleRememberMepopup);
+                            })
+                            $$('#remember-me-box a').each(function(element) {
+                                Event.observe(element, 'click', toggleRememberMepopup);
+                            });
+                        });
+                        //]]>
+                    </script>
+
+                    <button type="submit" class="button" title="Login" name="send" id="send2">Connexion </button>
+                </form>
+
+            </div>
+
+            <div class="new-costumer">
+                <h4>Je n'ai pas de compte, à quoi ça sert ?</h4>
+                <p>En optant pour le drive sur internet, vous allez pouvoir gérer au mieux vos courses.
+                    En effet, c'est à vous de séléctionner l'endroit mais également le moment auquel vous souhaitez venir chercher vos
+                    courses. Ainsi vous pouvez choisir le jour et l'heure qui vous correspond le mieux.
+                    Tout est fait pour que le drive s'adapte à votre temps libre.</p>
+                <a href="{{ navigation.root }}new">
+                    S'inscrire</a>
+            </div>
+
+        </div>
+
+    </div>    </div>
+
+
+
+{% endblock %}

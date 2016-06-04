@@ -1,0 +1,72 @@
+{% extends 'squelette.html.twig' %}
+{% block content %}
+    <!--categories-->
+    <div class="container topMenu">
+    </div>
+    <div class="container full-page">
+        <div class="container">
+            <div class="payment" id="payment">
+                <div class="payment-head" >
+                    <h3>Validation de la commande</h3>
+                    <div class="cart-link">
+                        <a href="{{ navigation.root }}panier ">
+                            <span class="ico-cart"></span>
+                            <span>Retourner au panier</span>
+                        </a>
+                    </div>
+                </div>
+
+
+                <div class="form-content" id="checkoutSteps">
+                  <div class="payment-head" >
+                    <h4>Prix total de votre commande : {{ totalPanier }} €</h4>
+                    </div>
+                    <div class="form-group section">
+                        <form action="{{ navigation.root }}payer" method="post">
+                           <ul class="form-list">
+
+                             <li class="fields fild-input" style="width: 100%">
+
+                                 <div class="field one-input"style="width: 100%">
+                                         <div class="select" style="width: 100%">
+                                             <select required name="dateValidation" title="date"style="width: 100%">
+                                                 <option selected disabled value=""> Heures disponibles </option>
+                                                 {% for date in planning.date %}
+                                                      <option value="{{ date }}">{{date}}</option>
+                                                 {% endfor %}
+                                             </select>
+                                         </div>
+                                 </div>
+
+
+                             </ul>
+
+                              <input type="hidden" name="prixPanier" value="{{ totalPanier }}">
+
+                              <div class="buttons-set-order" id="billing-buttons-container">
+                                  <button type="submit" title="Valider" class="button" >
+                                  <span> <i class="fa fa-check"></i> Valider </span></button>
+                              </div>
+
+                        </form>
+
+                                    <br><br>
+                                </div>
+
+                        </ul>
+                        </div>
+                    </div>
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+{% endblock %}

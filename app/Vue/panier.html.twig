@@ -1,0 +1,174 @@
+{% extends 'squelette.html.twig' %}
+{% block content %}
+    <!--categories-->
+
+
+    <div class="container topMenu">
+    </div>
+    <div class="container full-page">
+        <!--payment-->
+        <div class="cart-content" id="cart-content">
+            <div class="container">
+
+                    <div class="cart-head" id="cart-head">
+{% if totalPanier > 0 %}
+                        <h3>Votre panier</h3>
+
+                        <form action="{{ navigation.root }}delete" name="viderPanier" method="post">
+                            <button type="submit"  title="Vider le panier" class="button btn-empty clear" >
+                                <span class="ico-clear"></span>
+                                <span>Vider votre panier</span>
+                            </button>
+                        </form>
+
+                        <button type="submit" name="update_cart_action" value="update_qty"
+                                title="Mettre à jour le panier" class="button btn-update refresh">
+                            <span>Mettre à jour le panier</span>
+                            <span class="ico-refresh"></span>
+                        </button>
+
+
+                    </div><!--cart-head-->
+
+
+
+                    <div class="table-head">
+                        <span>Information sur le produit</span>
+                        <span>Qte</span>
+                        <span>prix ht</span>
+                        <span>Sous-total</span>
+                    </div>
+
+                    <div class="cart-list" id="cart-list">
+
+                    {%  for produit in produits %}
+                        <div class="one-item">
+                            <form method="post" id="{{ produit.reference }}" action="{{ navigation.root }}delete">
+                                <input type="hidden" name="reference" value="{{ produit.reference }}">
+                                <a href="javascript:{}" onclick="document.getElementById('{{ produit.reference }}').submit();" title="Supprimer cet article" class="delete"></a>
+                            </form>
+                            <div class="product-name">
+
+
+                                <div class="image-holder">
+                                    <a href="{{ navigation.root }}article/{{ produit.reference }}"
+                                       title="{{ produit.libelle }}" class="product-image"><img
+                                                src="{{ navigation.assets }}{{ produit.fichier_image }}"
+                                                width="120" height="75" alt="{{ produit.libelle }}"/></a></div>
+
+                                <div class="name-item">
+                                    <a href="{{ navigation.root }}article/{{ produit.reference }}">
+                                        <span>{{ produit.libelle }}</span><br>
+                                        {{ produit.marque }}
+                                    </a>
+                                </div>
+
+                                <div class="weav">
+                                    <div class="color">
+                                        <span class="weav-name">&nbsp;</span>
+                                        <span>&nbsp;</span>
+                                    </div>
+                                </div>
+
+                                <div class="item-number">
+                                    <span>Référence : </span>
+                                    <span>{{ produit.reference }}</span>
+                                </div>
+                            </div>
+
+                            <div class="product-character">
+                                <div class="product-count">
+                                    <div class="ittera-count">
+                                        <a href="#" class="minus"></a>
+                                        <input name="cart[1031][qty]"
+                                               value="{{ produit.quantite }}"
+                                               size="4"
+                                               title="Qty"
+                                               class="input-text qty"
+                                               maxlength="12"
+                                        />
+                                        <a href="#" class="plus"></a>
+                                    </div>
+                                </div>
+                                <div class="product-price">
+
+                                    <span class="main-price">{{ produit.prix_unit_ht }}</span>
+                                    <span class="dollar">€</span>
+
+                                </div>
+                                <div class="pay-price">
+
+                                    <span class="main-price">{{ produit.prix_unit_ht * produit.quantite}}</span>
+                                    <span class="dollar">€</span>
+                                    <span ></span>
+                                    {% if ancienPrix.reference == produit.reference %}
+                                    <span><br><br><i class="fa fa-tag"></i> Promotion : <br><center>{{ ancienPrix.nouveauPrix }}€</center></span>
+
+                                        {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        {%  endfor %}
+                    </div>
+
+
+
+
+                <div class="delivery">
+                    <div class="slogan">
+                        <span><i class="fa fa-tag fa-1x"></i> &nbsp;</span>
+                        <span> Code promotion</span>
+                    </div>
+                    <form action="{{ navigation.root }}panier" method="post"  style="display: inline-block;">
+                        <div class="selects">
+                            <input type="text" class="input-text" name="code" required />
+                        </div>
+
+                      <button type="submit" title="Envoyer" >Valider</button>
+
+                    </form>
+
+
+
+                </div>
+
+
+                <div class="last-price">
+                    <div class="total-cart">
+
+                        <div class="grand-total">
+                            <span class="name">Total du panier </span>
+                            <span class="main-price">{{ totalPanier }}</span>
+                            <span class="dollar">€</span>
+                        </div>
+
+                        {% if promoEffectuee == 1 %}
+                        <div class="grand-total">
+                            <span class="name">Ancien prix</span>
+                            <span class="old-price">{{ ancienTotalPanier }}</span>
+                            <span class="dollar">€</span>
+                        </div>
+                        {% endif %}
+
+                    </div>
+
+                </div>
+
+
+            <form action="{{ navigation.root }}validation" method="POST">
+                <input type="hidden" name="totalPanier" value="{{ totalPanier }}">
+                <button class="beggin" type="submit">
+                    Valider le panier
+                </button>
+            </form>
+
+    {% else %}
+                <h3>Oh oh... :-( &nbsp; Votre panier est vide </h3>
+    {% endif %}
+            </div>
+        </div>
+    </div>
+
+
+
+{% endblock %}

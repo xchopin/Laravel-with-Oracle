@@ -1,0 +1,107 @@
+{% extends 'squelette.html.twig' %}
+{% block content %}
+
+    <!--categories-->
+    <div class="container topMenu">
+    </div>
+    <div class="catalog">
+        <div class="container">
+            <div class="breadcrumbs-content">
+                <div class="navigate-info">
+                    <div class="breadcrumb">
+                        <i class="home"><a href="{{ navigation.root }}"></a></i>
+                        <a href="#" title="" class="bLink">
+                            {{ nom_categorie }}</a>
+                        <a href="#" title="" class="bLink">
+                            {{ sous_rayon.nom_rayon }}</a>
+                    </div>
+                </div>
+                <div class="clr"></div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="sidebar">
+
+                {%  if ss_rayon is not empty %}
+                    <div class="shop-category-left">
+                        <a href="#" class="show-all">
+                            <span>Sous-sous Rayon</span>
+                            <span class="drop"></span>
+                        </a>
+                        <div class="content-shops">
+                            <div class="shops-categories brands">
+                                <div class="head-shop-categories">
+                                    <a>Les sous-sous rayons</a>
+                                </div>
+                                <ul>
+                                    {% for sr in ss_rayon %}
+                                        <li>
+                                            <a href="">
+                                                - {{ sr.nom_ssr }}</a>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                {% endif %}
+
+
+            </div>
+            <div class="products">
+
+                <div class="sort-menu" id="sort">
+
+                    <div class="select">
+                        <div class="label"><span>Bienvenue au rayon :</span></div>
+                        <select id="toolbarSort">
+                            <option selected="selected">{{ sous_rayon.nom_sr }}
+                        </select>
+
+                    </div>
+
+
+                    <div class="pagination-sort">
+                    </div>
+                </div><!--end sort-->
+                <div class="content-catalog">
+                    <ul class="products-grid">
+
+                        {% for produit in tabProduits %}
+
+                                <li>
+                                    <a href="{{ navigation.root }}article/{{ produit.reference }}">
+                                        <div class="product-item">
+
+                                            <div class="overlay-image">
+                                                <img src="{{ navigation.assets}}{{ produit.fichier_image }}"
+                                                     alt="{{ produit.libelle }}">
+                                            </div>
+                                    <span class="about-product">
+                                         <span class="name">{{ produit.libelle }}  </span>
+                                         <span class="type">{{ produit.marque }}</span>
+                                         <span class="price">{{ produit.prix_unit_ht}} €</span>
+                                         <span class="price-small"> ({{ produit.prix_kilo_ou_litre}}€ /Kg)</span>
+                                    </span>
+
+                                    <a href="{{ navigation.root }}article/{{ produit.reference }}" class="button-bay">
+                                        <span class="icon-bay"></span>
+                                        <span>Voir fiche produit</span>
+                                    </a>
+                                        </div>
+                                    </a>
+                                </li>
+
+                        {%  endfor %}
+
+                    </ul>
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

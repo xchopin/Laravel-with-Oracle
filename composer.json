@@ -1,0 +1,19 @@
+{
+    "require": {
+    	"slim/views": "dev-master",
+        "slim/slim": "2.*",
+        "twig/twig": "1.18.0",
+        "Illuminate/Database": "^5.2",
+        "yajra/laravel-oci8": "5.2.*",
+        "components/font-awesome": "^4.6",
+        "rych/phpass": "^2.0"
+    },
+    "autoload": {
+        "psr-0": {
+            "app" : ".",
+            "assets" : ".",
+            "picof" : ".",
+            "arf" : "."
+        }
+    }
+}
