@@ -1,1 +1,1 @@
-E-commerce website using Laravel, Slim and Twig trough an Oracle Database
+E-commerce website using Laravel, Slim and Twig through an Oracle Database
