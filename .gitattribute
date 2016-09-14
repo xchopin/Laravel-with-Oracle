@@ -1,1 +1,2 @@
-linguist-language=PHP
+$ cat .gitattributes
+*.rb linguist-language=Java
